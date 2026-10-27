@@ -42,8 +42,12 @@ def local_server(tls=False):
                     try:
                         with context.wrap_socket(connection, server_side=True):
                             pass
-                    except ssl.SSLError:
-                        pass  # Expected when a client rejects our test certificate.
+                    except (ssl.SSLError, ConnectionAbortedError, ConnectionResetError):
+                        # A diagnostic client closes immediately after verification.
+                        # Windows can abort server-side TLS 1.3 session-ticket writes;
+                        # certificate rejection also ends the server handshake early.
+                        # The caller still asserts the client's exact TLS result.
+                        pass
         except OSError as error:
             errors.append(error)
     thread = threading.Thread(target=accept, daemon=True)
