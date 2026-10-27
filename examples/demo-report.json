@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "tool_version": "0.1.0",
+  "mode": "DEMO",
+  "timestamp": "2026-10-27T14:28:22.425637+00:00",
+  "status": "CRITICAL",
+  "endpoints": [
+    {
+      "host": "web.demo.invalid",
+      "port": 443,
+      "checks": [
+        {
+          "check": "dns",
+          "status": "OK",
+          "evidence": "Synthetic resolver returned one address",
+          "next_step": "No action required."
+        },
+        {
+          "check": "tcp",
+          "status": "OK",
+          "evidence": "Synthetic connection: 8.4 ms",
+          "next_step": "No action required."
+        },
+        {
+          "check": "tls",
+          "status": "WARNING",
+          "evidence": "Synthetic certificate expires in 14 days",
+          "next_step": "Schedule certificate renewal."
+        }
+      ]
+    },
+    {
+      "host": "backup.demo.invalid",
+      "port": 22,
+      "checks": [
+        {
+          "check": "dns",
+          "status": "OK",
+          "evidence": "Synthetic resolver returned one address",
+          "next_step": "No action required."
+        },
+        {
+          "check": "tcp",
+          "status": "CRITICAL",
+          "evidence": "Synthetic connection refused",
+          "next_step": "Inspect listener and firewall policy."
+        }
+      ]
+    }
+  ]
+}

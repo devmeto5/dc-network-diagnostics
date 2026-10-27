@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dc-network-diagnostics"
+version = "0.1.0"
+description = "Explicit-target DNS, TCP, and TLS diagnostics for data center operations"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "devmeto5"}]
+dependencies = []
+
+[project.scripts]
+dc-network = "dc_network.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["dc_network*"]

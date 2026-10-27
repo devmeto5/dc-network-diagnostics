@@ -1,0 +1,15 @@
+# Replace these reserved examples with endpoints you operate before live use.
+timeout = 5
+warning_days = 30
+# Optional: private CA bundle, relative to this configuration file.
+# ca_file = "company-ca.pem"
+
+[[targets]]
+host = "web.demo.invalid"
+port = 443
+tls = true
+
+[[targets]]
+host = "backup.demo.invalid"
+port = 22
+tls = false
